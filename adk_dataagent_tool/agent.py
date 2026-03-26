@@ -14,8 +14,8 @@ from google.adk.tools.data_agent.data_agent_toolset import DataAgentToolset
 
 # 1. Setup Authentication and Environment
 _, project_id = google.auth.default()
-os.environ["GOOGLE_CLOUD_PROJECT"] = "abhi-bq-agents"
-os.environ["GOOGLE_CLOUD_LOCATION"] = "global"
+os.environ["GOOGLE_CLOUD_PROJECT"] = "<project-id>" ## Update your project id
+os.environ["GOOGLE_CLOUD_LOCATION"] = "<location>" ## Update your location
 os.environ["GOOGLE_GENAI_USE_VERTEXAI"] = "True"
 
 application_default_credentials, _ = google.auth.default()
@@ -49,10 +49,11 @@ root_agent = Agent(
     model=Gemini(
         model="gemini-2.5-pro", 
     ),
+    ## Update the data agent uri
     instruction=f"""You are a helpful AI assistant designed to provide accurate and useful information.
     Your GCP project id is: {project_id}.
 
-    Use only the data agent with the name "projects/abhi-bq-agents/locations/global/dataAgents/agent_b5c72c10-04b8-4317-b0a6-b6a021723051"
+    Use only the data agent with the name "<data agent uri>" 
     """,
     tools=[da_toolset],
 )
